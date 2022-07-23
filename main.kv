@@ -1,0 +1,56 @@
+ScreenManagement:
+    MenuScreen:
+    ProfileScreen:
+    UploadScreen:
+
+<MenuScreen>:
+    name: 'menu'
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Notes'
+            left_action_items: [["menu", lambda x: app.navigation_draw()]]
+            right_action_items: [["dots-vertical", lambda x: app.callback()]]
+            elevation:5
+        MDLabel:
+            text: 'hello world'
+            halign: 'center'
+
+    MDFloatingActionButton:
+        icon: 'plus-thick'
+        on_press: root.manager.current = 'profile'
+        elevation_normal: 12
+        pos_hint: {'x': .8, 'y':.05}
+
+
+    
+<ProfileScreen>:
+    name: 'profile'
+    auto_dismiss: False
+    id: test1
+    TextInput:
+        id: input
+        hint_text:'Enter text'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.605}
+        size_hint: 0.95, 0.7
+        on_text: app.process()
+
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x':0.7,'center_y':0.1}
+        on_press: root.manager.current = 'menu'
+
+    MDRectangleFlatButton:
+        text: 'Save'
+        pos_hint: {'center_x':0.3,'center_y':0.1}
+        on_press: root.manager.current = 'upload'
+        
+<UploadScreen>:
+    name: 'upload'
+    MDLabel:
+        text: 'Note Saved'
+        halign: 'center'
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press: root.manager.current = 'menu'
